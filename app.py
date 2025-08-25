@@ -98,6 +98,7 @@ def verify_webhook_facebook():
         return "Verification failed", 403
     
 @app.route('/webhookthreads', methods=['GET'])
+@app.route('/webhookthreads/', methods=['GET'])
 def verify_webhook_threads():
     print("🔎 Query params:", request.args)
 
@@ -333,6 +334,7 @@ def webhook_facebook():
     return "OK", 200
 
 @app.route('/webhookthreads', methods=['POST'])
+@app.route('/webhookthreads/', methods=['POST'])
 def webhook_threads():
     data = request.get_json()
     print("📥 Received data:", data)
