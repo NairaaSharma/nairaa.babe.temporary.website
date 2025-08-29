@@ -40,7 +40,6 @@ supabase_threads = create_client(SUPABASE_URL_THREADS, SUPABASE_KEY_THREADS)
 # Load multiple Gemini API keys from environment variables
 GEMINI_API_KEYS_THREADS = GEMINI_API_KEYS_THREADS.split(',')
 
-print("Loaded Gemini API keys:", GEMINI_API_KEYS_THREADS)
 current_key_index = 0
 
 # Function to switch to the next API key

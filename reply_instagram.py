@@ -40,7 +40,6 @@ supabase_instagram = create_client(SUPABASE_URL_INSTAGRAM, SUPABASE_KEY_INSTAGRA
 # Load multiple Gemini API keys from environment variables
 GEMINI_API_KEYS_INSTAGRAM = GEMINI_API_KEYS_INSTAGRAM.split(',')
 
-print("Loaded Gemini API keys:", GEMINI_API_KEYS_INSTAGRAM)
 current_key_index = 0
 
 # Function to switch to the next API key
