@@ -172,7 +172,7 @@ def process_comments(comments):
 
         # 4️⃣ Post reply
         response = reply_to_comment(comment_id, reply)
-        if response and response.status_code == 200:
+        if response:
             print(f"✅ Replied to comment {comment_id} with: {reply}")
 
             # 5️⃣ Mark as replied

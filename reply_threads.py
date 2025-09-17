@@ -211,7 +211,7 @@ def process_replies(replies):
         # 4️⃣ Post reply
         creation_id = create_reply_container(reply, reply_id)
         response = publish_threads_reply(creation_id)
-        if response and response.status_code == 200:
+        if response:
             print(f"✅ Replied to user {reply_id} with: {reply}")
 
             # 5️⃣ Mark as replied
