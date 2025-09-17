@@ -172,13 +172,15 @@ def process_comments(comments):
 
         # 4️⃣ Post reply
         response = reply_to_comment(comment_id, reply)
-        if response:
+        if response and response.status_code == 200:
             print(f"✅ Replied to comment {comment_id} with: {reply}")
 
             # 5️⃣ Mark as replied
             supabase_instagram.table("Instagram Comments").update({"replied": True}).eq("comment_id", comment_id).execute()
         else:
             print(f"❌ Failed to reply to comment {comment_id}")
+            print(f"🗑️ Deleting comment {comment_id} from Supabase.")
+            supabase_instagram.table("Instagram Comments").delete().eq("comment_id", comment_id).execute()
 
         # 6️⃣ Delay between replies
         print("⏳ Waiting 20 seconds before next reply...")

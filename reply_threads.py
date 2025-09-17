@@ -211,13 +211,15 @@ def process_replies(replies):
         # 4️⃣ Post reply
         creation_id = create_reply_container(reply, reply_id)
         response = publish_threads_reply(creation_id)
-        if response:
+        if response and response.status_code == 200:
             print(f"✅ Replied to user {reply_id} with: {reply}")
 
             # 5️⃣ Mark as replied
             supabase_threads.table("Thread Replies").update({"replied": True}).eq("reply_id", reply_id).execute()
         else:
-            print(f"❌ Failed to reply to user {reply_id}")
+            print(f"❌ Failed to reply to reply {reply_id}")
+            print(f"🗑️ Deleting reply {reply_id} from Supabase.")
+            supabase_threads.table("Thread Replies").delete().eq("reply_id", reply_id).execute()
 
         # 6️⃣ Delay between replies
         print("⏳ Waiting 20 seconds before next reply...")
@@ -231,8 +233,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-            
